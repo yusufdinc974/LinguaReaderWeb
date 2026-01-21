@@ -1,0 +1,35 @@
+import type { ComponentType } from 'react';
+import HomePage from './pages/Home';
+import CustomLists from './pages/CustomLists';
+import Contribution from './pages/Contribution';
+
+export interface RouteConfig {
+    path: string;
+    name: string;
+    component: ComponentType;
+    showInNav: boolean;
+}
+
+export const appRoutes: RouteConfig[] = [
+    {
+        path: '/',
+        name: 'nav.home',
+        component: HomePage,
+        showInNav: true,
+    },
+    {
+        path: '/contribution',
+        name: 'nav.contribution',
+        component: Contribution,
+        showInNav: true,
+    },
+    {
+        path: '/custom-lists',
+        name: 'nav.custom_lists',
+        component: CustomLists,
+        showInNav: true,
+    },
+    // To add a new page, simply add object here.
+    // Example:
+    // { path: '/about', name: 'About', component: AboutPage, showInNav: true }
+];

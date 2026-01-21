@@ -1,0 +1,107 @@
+{
+    "nav": {
+        "home": "Home",
+        "custom_lists": "JSON Guide",
+        "contribution": "Contribute",
+        "download": "Download"
+    },
+    "hero": {
+        "title_start": "Master Languages with",
+        "title_end": "LinguaReader",
+        "subtitle": "A powerful, modern PDF reader designed for language learners. Read native content, translate instantly, and build vocabulary seamlessly.",
+        "download_btn": "Download Now",
+        "features_btn": "Explore Features",
+        "open_source": "Open Source",
+        "free_forever": "Free Forever"
+    },
+    "features": {
+        "title": "Why LinguaReader?",
+        "subtitle": "Everything you need to turn reading into language learning.",
+        "pdf_reader": {
+            "title": "Smart PDF Reading",
+            "desc": "Resume anywhere with automatic progress tracking. Focus mode cleans up the interface for deep reading sessions."
+        },
+        "translation": {
+            "title": "Instant Contextual Translation",
+            "desc": "Click any word to translate instantly. Understand detailed nuances with full sentence translations powered by AI."
+        },
+        "srs": {
+            "title": "Vocabulary Building (SRS)",
+            "desc": "Save words to custom lists. Master them with the built-in Spaced Repetition System and interactive flashcards."
+        },
+        "customizable": {
+            "title": "Modern & Customizable",
+            "desc": "Beautiful Dark and Light modes. Visualize your daily progress with interactive charts and graphs."
+        },
+        "import_export": {
+            "title": "Import / Export Compliance",
+            "desc": "Backup your data safely or bring your own word lists. Supports flexible JSON format for easy sharing and community lists."
+        }
+    },
+    "download": {
+        "title": "Get LinguaReader",
+        "checking": "Checking for latest version...",
+        "latest_release": "Latest Release",
+        "fetch_error": "Could not fetch latest release info.",
+        "visit_github": "Visit GitHub Releases",
+        "view_source": "View Source Code on GitHub",
+        "windows": "Windows 10/11",
+        "macos": "Universal (Intel/Silicon)",
+        "linux": "Debian/Ubuntu",
+        "download_btn": "Download"
+    },
+    "custom_lists": {
+        "title": "Build Custom Lists",
+        "subtitle": "Create tailored vocabulary lists with our open JSON format. Share with friends or import from other tools.",
+        "required_structure": {
+            "title": "Required Structure",
+            "desc": "The root object defines metadata for your list. The <1>words</1> array contains your vocabulary items."
+        },
+        "key_fields": {
+            "title": "Key Fields",
+            "word": "word",
+            "word_desc": "The term to learn (Required).",
+            "translation": "translation",
+            "translation_desc": "Definition in your target language (Required).",
+            "context": "context",
+            "context_desc": "Example usage sentence (Optional)."
+        },
+        "copy": "Copy",
+        "copied": "Copied",
+        "steps": {
+            "how_it_works": "How it works",
+            "s1_title": "1. Create File",
+            "s1_desc": "Create a new .json file on your desktop.",
+            "s2_title": "2. Add Words",
+            "s2_desc": "Fill it with your vocabulary following the structure above.",
+            "s3_title": "3. Import",
+            "s3_desc": "Open LinguaReader, go to Settings -> Import."
+        }
+    },
+    "footer": {
+        "copyright": "© {{year}} LinguaReader. Created by Yusuf Dinc."
+    },
+    "contribution": {
+        "title": "Join the Community",
+        "subtitle": "Help us make LinguaReader better for everyone. Whether you code, design, or speak multiple languages, your contribution matters.",
+        "feedback": {
+            "title": "Have Feedback?",
+            "desc": "Found a bug or have a feature request? Open an issue on GitHub to let us know.",
+            "btn": "Submit Feedback"
+        },
+        "tutorial": {
+            "title": "How to Contribute",
+            "step1_title": "Fork & Clone",
+            "step1_desc": "Fork the repo to your account and clone it locally.",
+            "step2_title": "Branch & Code",
+            "step2_desc": "Create a feature branch and implement your changes.",
+            "step3_title": "Submit PR",
+            "step3_desc": "Push your changes and open a Pull Request."
+        },
+        "thanks": {
+            "title": "Thank You!",
+            "message": "To everyone who has contributed: your code, feedback, and support drive this project forward. Together, we are building the best open-source tool for language learners.",
+            "praise": "You are awesome!"
+        }
+    }
+}
