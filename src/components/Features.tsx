@@ -1,4 +1,4 @@
-import { BookOpen, Languages, Brain, Palette, Sparkles, BarChart3, Moon, RefreshCw, Upload, Download, FileJson } from 'lucide-react';
+import { BookOpen, Languages, Brain, Palette, Sparkles, BarChart3, Moon, RefreshCw, Upload, Download, FileJson, Wifi, CheckCircle2, Smartphone, Monitor } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import './Features.css';
@@ -248,6 +248,60 @@ function ImportExportDemo() {
     );
 }
 
+function SyncDemo() {
+    return (
+        <div className="feature-demo sync-demo">
+            <div className="devices-container">
+                {/* Desktop Icon */}
+                <div className="device-wrapper desktop">
+                    <Monitor size={48} className="device-icon" />
+                    <motion.div
+                        className="screen-glow"
+                        animate={{ opacity: [0.3, 0.6, 0.3] }}
+                        transition={{ duration: 3, repeat: Infinity }}
+                    />
+                </div>
+
+                {/* Connection Lines */}
+                <div className="connection-path">
+                    <div className="line-path" />
+                    <motion.div className="data-packet"
+                        animate={{ x: [-30, 30], opacity: [0, 1, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                    />
+                    <motion.div className="data-packet"
+                        animate={{ x: [30, -30], opacity: [0, 1, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity, ease: "linear", delay: 0.75 }}
+                    />
+                    <div className="wifi-signal">
+                        <Wifi size={24} />
+                    </div>
+                </div>
+
+                {/* Mobile Icon */}
+                <div className="device-wrapper mobile">
+                    <Smartphone size={32} className="device-icon" />
+                    <motion.div
+                        className="screen-glow"
+                        animate={{ opacity: [0.3, 0.6, 0.3] }}
+                        transition={{ duration: 3, repeat: Infinity, delay: 1.5 }}
+                    />
+                </div>
+            </div>
+
+            <motion.div
+                className="sync-status-badge"
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1 }}
+            >
+                <CheckCircle2 size={16} className="text-green-400" />
+                <span>Synced</span>
+            </motion.div>
+        </div>
+    );
+}
+
 export default function Features() {
     const { t } = useTranslation();
 
@@ -281,6 +335,12 @@ export default function Features() {
             title: t('features.import_export.title'),
             description: t('features.import_export.desc'),
             Demo: ImportExportDemo
+        },
+        {
+            icon: Wifi,
+            title: t('features.sync.title'),
+            description: t('features.sync.desc'),
+            Demo: SyncDemo
         }
     ];
 

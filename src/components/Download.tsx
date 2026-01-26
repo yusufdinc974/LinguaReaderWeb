@@ -39,7 +39,9 @@ export default function Download() {
     };
 
     const linuxUrl = getAssetUrl('.deb') || getAssetUrl('.AppImage') || 'https://github.com/yusufdinc974/LinguaReader/releases/latest';
-    const winUrl = getAssetUrl('.exe') || 'https://github.com/yusufdinc974/LinguaReader/releases/latest';
+    const winUrl = release?.assets.find(asset => asset.name.includes('Setup') && asset.name.endsWith('.exe'))?.browser_download_url
+        || getAssetUrl('.exe')
+        || 'https://github.com/yusufdinc974/LinguaReader/releases/latest';
     const macUrl = getAssetUrl('.dmg') || 'https://github.com/yusufdinc974/LinguaReader/releases/latest';
 
     const downloadOptions = [
@@ -48,7 +50,7 @@ export default function Download() {
             icon: Monitor,
             url: winUrl,
             desc: t('download.windows'),
-            fileType: '.exe'
+            fileType: 'Setup.exe'
         },
         {
             os: 'macOS',

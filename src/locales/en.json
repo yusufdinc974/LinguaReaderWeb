@@ -36,6 +36,10 @@
         "import_export": {
             "title": "Import / Export Compliance",
             "desc": "Backup your data safely or bring your own word lists. Supports flexible JSON format for easy sharing and community lists."
+        },
+        "sync": {
+            "title": "Seamless Synchronization",
+            "desc": "Sync your reading progress and vocabulary between Desktop and Mobile instantly. Works privately over your local Wi-Fi."
         }
     },
     "download": {
