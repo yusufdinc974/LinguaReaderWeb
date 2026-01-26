@@ -1,23 +1,36 @@
 .device-frame-container {
   position: relative;
   display: flex;
-  justify-content: center; /* Horizontally center */
-  align-items: center;    /* Vertically center */
+  justify-content: center;
+  /* Horizontally center */
+  align-items: center;
+  /* Vertically center */
   width: 100%;
   max-width: 100%;
+  /* Prevent ANY overflow from children */
+  padding-bottom: 60px;
+  /* Reserve space for the stand */
+  /* Ensure container doesn't clip the stand now that it's attached correctly */
 }
 
 /* --- Mobile Frame Styles --- */
 .device-frame-mobile {
   position: relative;
-  width: 300px; /* Base width, can be overridden or responsive */
-  height: 600px;
+  width: 100%;
+  max-width: 340px;
+  /* Bigger mobile frame */
+  aspect-ratio: 9/19.5;
+  /* maintain aspect ratio */
+  height: auto;
+  /* let aspect ratio control height */
   background-color: #1a1a1a;
   border-radius: 40px;
   border: 12px solid #2a2a2a;
-  box-shadow: 
-    0 0 0 2px #4a4a4a, /* Outer bevel */
-    0 20px 50px -10px rgba(0, 0, 0, 0.5); /* Drop shadow */
+  box-shadow:
+    0 0 0 2px #4a4a4a,
+    /* Outer bevel */
+    0 20px 50px -10px rgba(0, 0, 0, 0.5);
+  /* Drop shadow */
   overflow: hidden;
   z-index: 10;
 }
@@ -43,28 +56,34 @@
   height: 100%;
   background-color: #000;
   overflow: hidden;
-  border-radius: 28px; /* Slightly less than outer to fit */
+  border-radius: 28px;
+  /* Slightly less than outer to fit */
 }
 
 /* --- Desktop Frame Styles --- */
 .device-frame-desktop {
   position: relative;
-  width: 800px;
-  aspect-ratio: 16/10;
+  width: 100%;
+  max-width: 1000px;
+  /* Allow growing larger on big screens */
+  /* aspect-ratio removed - let content dictate height */
   background-color: #1a1a1a;
   border-radius: 20px;
   border: 12px solid #2a2a2a;
-  box-shadow: 
+  box-shadow:
     0 0 0 2px #4a4a4a,
     0 30px 60px -15px rgba(0, 0, 0, 0.6);
   z-index: 10;
+  flex-shrink: 0;
+  /* Prevent shrinking */
 }
 
 /* Webcam dot */
 .device-frame-desktop::before {
   content: '';
   position: absolute;
-  top: -8px; /* Position within the top border */
+  top: -8px;
+  /* Position within the top border */
   left: 50%;
   transform: translateX(-50%);
   width: 6px;
@@ -77,7 +96,8 @@
 /* The Stand (Bottom part) */
 .device-stand-desktop {
   position: absolute;
-  bottom: -40px; /* Push below the screen */
+  bottom: -40px;
+  /* Push below the screen */
   left: 50%;
   transform: translateX(-50%);
   width: 140px;
@@ -85,7 +105,8 @@
   background: linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%);
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  z-index: 5; /* Behind the screen usually, or connected visually */
+  z-index: 5;
+  /* Behind the screen usually, or connected visually */
 }
 
 /* Base of the stand */
@@ -93,7 +114,8 @@
   content: '';
   position: absolute;
   bottom: 0;
-  left: -40px; /* extends wider than the neck */
+  left: -40px;
+  /* extends wider than the neck */
   width: 220px;
   height: 4px;
   background-color: #2a2a2a;
@@ -101,9 +123,17 @@
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
 }
 
+/* Ensure nothing leaks horizontally from the frame itself */
+.device-frame-desktop,
+.device-frame-mobile {
+  max-width: 100%;
+}
+
 .device-content-desktop {
   width: 100%;
   height: 100%;
+  aspect-ratio: 16/10;
+  /* Apply ratio to CONTENT to prevent border skew */
   background-color: #000;
   overflow: hidden;
   border-radius: 8px;
@@ -124,7 +154,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 40%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 40%);
   pointer-events: none;
   z-index: 30;
 }

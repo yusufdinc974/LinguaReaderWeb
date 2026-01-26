@@ -96,8 +96,10 @@ h1,
 h2,
 h3,
 h4 {
-  line-height: 1.2;
-  font-weight: 700;
+  line-height: 1.1;
+  /* Tighter headings */
+  font-weight: 800;
+  /* Bolder */
   color: var(--text-primary);
 }
 
@@ -135,8 +137,8 @@ h4 {
 
 @media (min-width: 1024px) {
   .hero-grid {
-    grid-template-columns: 1fr 1fr;
-    /* Exact 50/50 split on Desktop */
+    grid-template-columns: 0.8fr 1.2fr;
+    /* Give more space to the device (60%) */
     gap: 4rem;
     text-align: left;
   }

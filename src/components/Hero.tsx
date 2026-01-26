@@ -70,7 +70,10 @@ export default function Hero() {
                             display: 'flex',
                             justifyContent: 'center',
                             perspective: '1000px',
-                            width: '100%'
+                            width: '100%',
+                            minWidth: 0, /* Prevent Grid Blowout on Mobile */
+                            position: 'relative',
+                            zIndex: 1
                         }}
                     >
                         <DeviceFrame type="desktop" alt="LinguaReader Desktop Interface">

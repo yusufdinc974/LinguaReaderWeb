@@ -69,11 +69,11 @@ export const DeviceFrame: React.FC<DeviceFrameProps> = ({
                         )
                     )}
                 </div>
-            </div>
 
-            {!isMobile && (
-                <div className="device-stand-desktop" />
-            )}
+                {!isMobile && (
+                    <div className="device-stand-desktop" />
+                )}
+            </div>
         </motion.div>
     );
 };
