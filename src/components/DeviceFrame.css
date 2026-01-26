@@ -1,0 +1,130 @@
+.device-frame-container {
+  position: relative;
+  display: flex;
+  justify-content: center; /* Horizontally center */
+  align-items: center;    /* Vertically center */
+  width: 100%;
+  max-width: 100%;
+}
+
+/* --- Mobile Frame Styles --- */
+.device-frame-mobile {
+  position: relative;
+  width: 300px; /* Base width, can be overridden or responsive */
+  height: 600px;
+  background-color: #1a1a1a;
+  border-radius: 40px;
+  border: 12px solid #2a2a2a;
+  box-shadow: 
+    0 0 0 2px #4a4a4a, /* Outer bevel */
+    0 20px 50px -10px rgba(0, 0, 0, 0.5); /* Drop shadow */
+  overflow: hidden;
+  z-index: 10;
+}
+
+/* Notch */
+.device-frame-mobile::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 25px;
+  background-color: #2a2a2a;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  z-index: 20;
+}
+
+/* Inner content area */
+.device-content-mobile {
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  overflow: hidden;
+  border-radius: 28px; /* Slightly less than outer to fit */
+}
+
+/* --- Desktop Frame Styles --- */
+.device-frame-desktop {
+  position: relative;
+  width: 800px;
+  aspect-ratio: 16/10;
+  background-color: #1a1a1a;
+  border-radius: 20px;
+  border: 12px solid #2a2a2a;
+  box-shadow: 
+    0 0 0 2px #4a4a4a,
+    0 30px 60px -15px rgba(0, 0, 0, 0.6);
+  z-index: 10;
+}
+
+/* Webcam dot */
+.device-frame-desktop::before {
+  content: '';
+  position: absolute;
+  top: -8px; /* Position within the top border */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  background-color: #0f0f0f;
+  border-radius: 50%;
+  z-index: 20;
+}
+
+/* The Stand (Bottom part) */
+.device-stand-desktop {
+  position: absolute;
+  bottom: -40px; /* Push below the screen */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  height: 40px;
+  background: linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  z-index: 5; /* Behind the screen usually, or connected visually */
+}
+
+/* Base of the stand */
+.device-stand-desktop::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -40px; /* extends wider than the neck */
+  width: 220px;
+  height: 4px;
+  background-color: #2a2a2a;
+  border-radius: 2px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.device-content-desktop {
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+/* Media handling */
+.device-media {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Light/Reflection Glare - Optional Polish */
+.device-glare {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 40%);
+  pointer-events: none;
+  z-index: 30;
+}

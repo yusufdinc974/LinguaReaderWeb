@@ -1,6 +1,8 @@
 import { ArrowRight, Download } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import { DeviceFrame } from './DeviceFrame';
+import { DesktopHeroSimulation } from './AppSimulations';
 
 export default function Hero() {
     const { t } = useTranslation();
@@ -8,15 +10,15 @@ export default function Hero() {
     return (
         <section style={{ padding: '4rem 0', position: 'relative', overflow: 'hidden' }}>
             <div className="container">
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '4rem', alignItems: 'center' }}>
+                <div className="hero-grid">
 
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.6 }}
-                        style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto' }}
+                        style={{ maxWidth: '600px', margin: '0 auto' }}
                     >
-                        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginBottom: '1.5rem' }}>
+                        <div style={{ display: 'flex', gap: '1rem', marginBottom: '1.5rem' }}>
                             <span style={{
                                 padding: '0.4rem 1rem',
                                 borderRadius: '2rem',
@@ -48,7 +50,7 @@ export default function Hero() {
                             {t('hero.subtitle')}
                         </p>
 
-                        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
                             <a href="#download" className="btn btn-primary">
                                 <Download size={20} />
                                 {t('hero.download_btn')}
@@ -61,35 +63,19 @@ export default function Hero() {
                     </motion.div>
 
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
+                        initial={{ opacity: 0, scale: 0.95, x: 20 }}
+                        animate={{ opacity: 1, scale: 1, x: 0 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
-                        className="hero-image-wrapper"
                         style={{
-                            position: 'relative',
-                            borderRadius: '1rem',
-                            overflow: 'hidden',
-                            marginTop: '2rem',
-                            boxShadow: '0 20px 50px rgba(0,0,0,0.3)',
-                            border: '1px solid var(--border)'
+                            display: 'flex',
+                            justifyContent: 'center',
+                            perspective: '1000px',
+                            width: '100%'
                         }}
                     >
-                        <div
-                            className="glow-effect"
-                            style={{
-                                position: 'absolute',
-                                inset: 0,
-                                zIndex: 1,
-                                borderRadius: '1rem',
-                                pointerEvents: 'none',
-                                animation: 'glow-pulse 3s infinite ease-in-out'
-                            }}
-                        ></div>
-                        <img
-                            src="/assets/banner.png"
-                            alt="LinguaReader Interface"
-                            style={{ width: '100%', height: 'auto', display: 'block', position: 'relative', zIndex: 0 }}
-                        />
+                        <DeviceFrame type="desktop" alt="LinguaReader Desktop Interface">
+                            <DesktopHeroSimulation />
+                        </DeviceFrame>
                     </motion.div>
 
                 </div>
