@@ -1,6 +1,7 @@
 {
     "nav": {
         "home": "Anasayfa",
+        "mobile": "Mobil Uygulama",
         "custom_lists": "JSON Rehberi",
         "contribution": "Katkıda Bulun",
         "download": "İndir"
@@ -36,7 +37,31 @@
         "import_export": {
             "title": "İçe / Dışa Aktarma",
             "desc": "Verilerinizi güvenle yedekleyin veya kendi kelime listelerinizi getirin. Kolay paylaşım ve topluluk listeleri için esnek JSON formatını destekler."
+        },
+        "sync": {
+            "title": "Sorunsuz Eşzamanlama",
+            "desc": "Okuma ilerlemenizi ve kelime listenizi Masaüstü ve Mobil cihazlarınız arasında anında eşitleyin. Yerel Wi-Fi üzerinden tamamen özel olarak çalışır."
         }
+    },
+    "mobile_page": {
+        "title": "LinguaReader Mobil",
+        "subtitle": "Öğrenme yolculuğunuzu cebinizde taşıyın.",
+        "hero_desc": "Masaüstü deneyiminin gücü, şimdi Android cihazınızda. Hareket halindeyken okuyun, çevirin ve tekrar yapın.",
+        "features": {
+            "touch_translate": {
+                "title": "Dokun ve Çevir",
+                "desc": "Parmağınızla herhangi bir kelimeye dokunun ve çevirisini anında görün. Okuma akışınızı bozmadan öğrenin."
+            },
+            "sync": {
+                "title": "Masaüstü ile Eşitle",
+                "desc": "QR kodu taratarak kelimelerinizi ve ilerlemenizi saniyeler içinde aktarın."
+            },
+            "offline": {
+                "title": "Çevrimdışı Mod",
+                "desc": "İnternet bağlantısı olmadan da kitaplarınızı okuyun ve sözlüğünüze erişin."
+            }
+        },
+        "download_android": "Android için İndir"
     },
     "download": {
         "title": "LinguaReader'ı Edinin",

@@ -1,6 +1,7 @@
 {
     "nav": {
         "home": "Home",
+        "mobile": "Mobile App",
         "custom_lists": "JSON Guide",
         "contribution": "Contribute",
         "download": "Download"
@@ -41,6 +42,26 @@
             "title": "Seamless Synchronization",
             "desc": "Sync your reading progress and vocabulary between Desktop and Mobile instantly. Works privately over your local Wi-Fi."
         }
+    },
+    "mobile_page": {
+        "title": "LinguaReader Mobile",
+        "subtitle": "Take your learning journey with you.",
+        "hero_desc": "The power of the Desktop experience, now on your Android device. Read, translate, and review on the go.",
+        "features": {
+            "touch_translate": {
+                "title": "Touch to Translate",
+                "desc": "Tap any word with your finger to instantly see its translation. Learn without breaking your reading flow."
+            },
+            "sync": {
+                "title": "Sync with Desktop",
+                "desc": "Scan a QR code to transfer your words and progress in seconds."
+            },
+            "offline": {
+                "title": "Offline Mode",
+                "desc": "Read your books and access your dictionary even without an internet connection."
+            }
+        },
+        "download_android": "Download for Android"
     },
     "download": {
         "title": "Get LinguaReader",

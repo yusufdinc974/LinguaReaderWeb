@@ -2,6 +2,7 @@ import type { ComponentType } from 'react';
 import HomePage from './pages/Home';
 import CustomLists from './pages/CustomLists';
 import Contribution from './pages/Contribution';
+import MobileApp from './pages/MobileApp';
 
 export interface RouteConfig {
     path: string;
@@ -15,6 +16,12 @@ export const appRoutes: RouteConfig[] = [
         path: '/',
         name: 'nav.home',
         component: HomePage,
+        showInNav: true,
+    },
+    {
+        path: '/mobile',
+        name: 'nav.mobile',
+        component: MobileApp,
         showInNav: true,
     },
     {
