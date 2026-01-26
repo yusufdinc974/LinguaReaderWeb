@@ -137,7 +137,7 @@ export default function MobileApp() {
                 <div className="container" style={{ maxWidth: '600px', margin: '0 auto' }}>
                     <h2 style={{ fontSize: '2.5rem', marginBottom: '2rem' }}>{t('mobile_page.hero_desc')}</h2>
                     <a
-                        href="https://github.com/yusufdinc974/LinguaReaderAndroid/releases/latest"
+                        href="https://github.com/yusufdinc974/LinguaReaderAndroid/releases/latest/download/app-release.apk"
                         target="_blank"
                         rel="noreferrer"
                         className="btn btn-primary"
