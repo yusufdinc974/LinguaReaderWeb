@@ -39,8 +39,10 @@ export default function Download() {
     };
 
     const linuxUrl = getAssetUrl('.deb') || getAssetUrl('.AppImage') || 'https://github.com/yusufdinc974/LinguaReader/releases/latest';
-    const winUrl = release?.assets.find(asset => asset.name.includes('Setup') && asset.name.endsWith('.exe'))?.browser_download_url
-        || getAssetUrl('.exe')
+    const winUrl = release?.assets.find(asset => {
+        const name = asset.name.toLowerCase();
+        return name.endsWith('.exe') && (name.includes('.setup.') || name.includes('setup'));
+    })?.browser_download_url
         || 'https://github.com/yusufdinc974/LinguaReader/releases/latest';
     const macUrl = getAssetUrl('.dmg') || 'https://github.com/yusufdinc974/LinguaReader/releases/latest';
 
