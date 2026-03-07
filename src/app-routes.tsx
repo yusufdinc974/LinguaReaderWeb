@@ -3,6 +3,7 @@ import HomePage from './pages/Home';
 import CustomLists from './pages/CustomLists';
 import Contribution from './pages/Contribution';
 import MobileApp from './pages/MobileApp';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 
 export interface RouteConfig {
     path: string;
@@ -35,6 +36,12 @@ export const appRoutes: RouteConfig[] = [
         name: 'nav.custom_lists',
         component: CustomLists,
         showInNav: true,
+    },
+    {
+        path: '/privacy',
+        name: 'Privacy Policy',
+        component: PrivacyPolicy,
+        showInNav: false,
     },
     // To add a new page, simply add object here.
     // Example:
