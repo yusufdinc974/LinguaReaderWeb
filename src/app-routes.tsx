@@ -4,6 +4,7 @@ import CustomLists from './pages/CustomLists';
 import Contribution from './pages/Contribution';
 import MobileApp from './pages/MobileApp';
 import PrivacyPolicy from './pages/PrivacyPolicy';
+import DeleteAccount from './pages/DeleteAccount';
 
 export interface RouteConfig {
     path: string;
@@ -41,6 +42,12 @@ export const appRoutes: RouteConfig[] = [
         path: '/privacy',
         name: 'Privacy Policy',
         component: PrivacyPolicy,
+        showInNav: false,
+    },
+    {
+        path: '/delete-account',
+        name: 'Delete Account',
+        component: DeleteAccount,
         showInNav: false,
     },
     // To add a new page, simply add object here.
