@@ -11,16 +11,16 @@ const DeleteAccount: React.FC = () => {
 
                     <div className="relative z-10">
                         <h1 className="text-5xl font-extrabold tracking-tight mb-2 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
-                            Account Deletion
+                            Account & Data Deletion
                         </h1>
-                        <p className="text-gray-500 font-medium mb-12 text-lg">Request to remove your account and data from LinguaReader.</p>
+                        <p className="text-gray-500 font-medium mb-12 text-lg">Request to remove all or some of your data from LinguaReader.</p>
 
                         <div className="space-y-10 text-gray-300 leading-relaxed">
                             <section>
                                 <h2 className="text-2xl font-bold text-white mb-4">How to request deletion</h2>
                                 <p className="mb-4">
-                                    To protect our users' security, account deletion requests must be verified via your registered email address. 
-                                    Please send an email to our support team with the subject <strong>"Account Deletion Request"</strong>.
+                                    To protect our users' security, data deletion requests must be verified via your registered email address. 
+                                    Please send an email to our support team with the subject <strong>"Data Deletion Request"</strong>. In your message, specify if you'd like to delete your entire account or only specific data (e.g., learning history, word lists).
                                 </p>
                                 <a 
                                     href="mailto:dinc.yusuf.business@gmail.com?subject=Account Deletion Request" 
