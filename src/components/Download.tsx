@@ -1,171 +1,80 @@
-import { Github, Monitor, Apple, Command, Loader2, AlertCircle } from 'lucide-react';
-import { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Download as DownloadIcon, ExternalLink } from 'lucide-react';
+import { fill, useI18n } from '../lib/i18n';
+import { REPO, detectPlatform, formatSize, useRelease, type FileKind, type Platform } from '../lib/release';
 
-interface ReleaseAsset {
-    name: string;
-    browser_download_url: string;
-}
-
-interface ReleaseData {
-    tag_name: string;
-    assets: ReleaseAsset[];
-}
+const platforms: Array<{ id: Platform; files: FileKind[] }> = [
+    { id: 'windows', files: ['setup', 'portable'] },
+    { id: 'mac', files: ['dmg'] },
+    { id: 'linux', files: ['appimage', 'deb'] },
+];
 
 export default function Download() {
-    const [release, setRelease] = useState<ReleaseData | null>(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(false);
-    const { t } = useTranslation();
+    const { t, lang } = useI18n();
+    const release = useRelease();
+    const mine = detectPlatform();
+    const d = t.download;
 
-    useEffect(() => {
-        fetch('https://api.github.com/repos/yusufdinc974/LinguaReader/releases/latest')
-            .then(res => {
-                if (!res.ok) throw new Error('Failed to fetch');
-                return res.json();
-            })
-            .then(data => {
-                setRelease(data);
-                setLoading(false);
-            })
-            .catch(() => {
-                setError(true);
-                setLoading(false);
-            });
-    }, []);
-
-    const getAssetUrl = (extension: string) => {
-        return release?.assets.find(asset => asset.name.endsWith(extension))?.browser_download_url;
-    };
-
-    const linuxUrl = getAssetUrl('.deb') || getAssetUrl('.AppImage') || 'https://github.com/yusufdinc974/LinguaReader/releases/latest';
-    const winUrl = release?.assets.find(asset => {
-        const name = asset.name.toLowerCase();
-        return name.endsWith('.exe') && (name.includes('.setup.') || name.includes('setup'));
-    })?.browser_download_url
-        || 'https://github.com/yusufdinc974/LinguaReader/releases/latest';
-    const macUrl = getAssetUrl('.dmg') || 'https://github.com/yusufdinc974/LinguaReader/releases/latest';
-
-    const downloadOptions = [
-        {
-            os: 'Windows',
-            icon: Monitor,
-            url: winUrl,
-            desc: t('download.windows'),
-            fileType: 'Setup.exe'
-        },
-        {
-            os: 'macOS',
-            icon: Apple,
-            url: macUrl,
-            desc: t('download.macos'),
-            fileType: '.dmg'
-        },
-        {
-            os: 'Linux',
-            icon: Command, // Using Command as a generic terminal/linux icon proxy
-            url: linuxUrl,
-            desc: t('download.linux'),
-            fileType: '.deb'
-        }
-    ];
+    const date = release.date
+        ? new Date(`${release.date}T00:00:00`).toLocaleDateString(lang === 'tr' ? 'tr-TR' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+        : null;
 
     return (
-        <section id="download" style={{ padding: '6rem 0', backgroundColor: 'var(--bg-accent)', textAlign: 'center' }}>
+        <section id="download" className="section section-alt">
             <div className="container">
-                <h2 style={{ fontSize: '3rem', marginBottom: '1rem' }}>{t('download.title')}</h2>
-                <p style={{ color: 'var(--text-secondary)', fontSize: '1.25rem', marginBottom: '3rem' }}>
-                    {loading ? t('download.checking') : `${t('download.latest_release')}: ${release?.tag_name || 'v1.0.0'}`}
+                <header className="section-head">
+                    <p className="kicker">{d.kicker}</p>
+                    <h2>{d.title}</h2>
+                    <p className="lead">{d.subtitle}</p>
+                    <p className="muted release-line">
+                        <strong>{fill(d.version, { version: release.version })}</strong>
+                        {date && <>, {fill(d.released, { date })}</>}
+                    </p>
+                </header>
+
+                <div className="dl-grid">
+                    {platforms.map(p => (
+                        <div key={p.id} className={`dl-card${mine === p.id ? ' mine' : ''}`}>
+                            <div className="dl-card-head">
+                                <h3>{d[p.id].name}</h3>
+                                {mine === p.id && <span className="tag">{d.yours}</span>}
+                            </div>
+                            <p className="muted dl-req">{d[p.id].req}</p>
+                            <div className="dl-files">
+                                {p.files.map((kind, i) => {
+                                    const f = release.files[kind];
+                                    return (
+                                        <a key={kind} href={f.url} className={`btn ${i === 0 ? (mine === p.id ? 'btn-primary' : 'btn-outline') : 'btn-ghost'} btn-block dl-file`}>
+                                            <DownloadIcon size={16} />
+                                            <span className="dl-file-name">{d.files[kind]}</span>
+                                            <span className="dl-size">{formatSize(f.size)}</span>
+                                        </a>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+                <p className="dl-links">
+                    <a href={`${REPO}/releases`} target="_blank" rel="noreferrer">{d.allReleases} <ExternalLink size={14} /></a>
+                    <a href={REPO} target="_blank" rel="noreferrer">{d.source} <ExternalLink size={14} /></a>
                 </p>
 
-                {loading ? (
-                    <div style={{ display: 'flex', justifyContent: 'center', padding: '2rem' }}>
-                        <Loader2 className="animate-spin" size={48} color="var(--primary)" style={{ animation: 'spin 1s linear infinite' }} />
-                        <style>{`@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }`}</style>
-                    </div>
-                ) : error ? (
-                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
-                        <AlertCircle color="var(--primary)" size={32} />
-                        <p>{t('download.fetch_error')}</p>
-                        <a
-                            href="https://github.com/yusufdinc974/LinguaReader/releases/latest"
-                            target="_blank"
-                            rel="noreferrer"
-                            className="btn btn-primary"
-                        >
-                            <Github size={20} />
-                            {t('download.visit_github')}
-                        </a>
-                    </div>
-                ) : (
-                    <div style={{
-                        display: 'grid',
-                        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-                        gap: '2rem',
-                        maxWidth: '1000px',
-                        margin: '0 auto'
-                    }}>
-                        {downloadOptions.map((opt) => (
-                            <a
-                                key={opt.os}
-                                href={opt.url}
-                                className="download-card"
-                                style={{
-                                    padding: '2rem',
-                                    backgroundColor: 'var(--bg-primary)',
-                                    borderRadius: '1rem',
-                                    border: '1px solid var(--border)',
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    alignItems: 'center',
-                                    gap: '1rem',
-                                    transition: 'all 0.2s',
-                                    textDecoration: 'none',
-                                    color: 'inherit'
-                                }}
-                                onMouseEnter={e => {
-                                    e.currentTarget.style.transform = 'translateY(-5px)';
-                                    e.currentTarget.style.borderColor = 'var(--primary)';
-                                }}
-                                onMouseLeave={e => {
-                                    e.currentTarget.style.transform = 'translateY(0)';
-                                    e.currentTarget.style.borderColor = 'var(--border)';
-                                }}
-                            >
-                                <div style={{
-                                    width: '4rem',
-                                    height: '4rem',
-                                    backgroundColor: 'rgba(56, 189, 248, 0.1)',
-                                    borderRadius: '50%',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    color: 'var(--primary)'
-                                }}>
-                                    <opt.icon size={32} />
-                                </div>
-                                <div>
-                                    <h3 style={{ fontSize: '1.5rem', marginBottom: '0.25rem' }}>{opt.os}</h3>
-                                    <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>{opt.desc}</p>
-                                </div>
-                                <div className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', marginTop: 'auto' }}>
-                                    {t('download.download_btn')} {opt.fileType}
-                                </div>
-                            </a>
-                        ))}
-                    </div>
-                )}
-
-                <div style={{ marginTop: '4rem' }}>
-                    <a
-                        href="https://github.com/yusufdinc974/LinguaReader"
-                        target="_blank"
-                        rel="noreferrer"
-                        style={{ color: 'var(--text-secondary)', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', }}
-                    >
-                        <Github size={16} />
-                        {t('download.view_source')}
-                    </a>
+                <div className="help">
+                    <h3>{d.help.title}</h3>
+                    <details open={mine === 'windows'}>
+                        <summary>{d.help.windowsQ}</summary>
+                        <p>{d.help.windowsA}</p>
+                    </details>
+                    <details open={mine === 'mac'}>
+                        <summary>{d.help.macQ}</summary>
+                        <p>{d.help.macA}</p>
+                    </details>
+                    <details open={mine === 'linux'}>
+                        <summary>{d.help.linuxQ}</summary>
+                        <p>{d.help.linuxA}</p>
+                        <pre><code>{'chmod +x LinguaReader-*.AppImage\n./LinguaReader-*.AppImage'}</code></pre>
+                    </details>
                 </div>
             </div>
         </section>

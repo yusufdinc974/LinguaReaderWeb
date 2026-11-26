@@ -1,73 +1,29 @@
-# React + TypeScript + Vite
+# LinguaReader website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The website for [LinguaReader](https://github.com/yusufdinc974/LinguaReader), a free and open source reader for language learners (Windows, macOS and Linux).
 
-Currently, two official plugins are available:
+Live at <https://lingua-reader-web.vercel.app/>.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## What's here
 
-## React Compiler
+- **Home** (`/`): what the app does, a small working copy of the reader, screenshots, and downloads for the latest release.
+- **Word lists** (`/custom-lists`): the JSON format for sharing and importing lists.
+- **Contribute** (`/contribution`): how to send a change or report a bug.
+- **Android** (`/mobile`), **Privacy policy** (`/privacy`) and **Delete account** (`/delete-account`).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The site follows the desktop app's design: the same colors, fonts (Inter and Source Serif 4), logo, and light and dark themes. Text is in English and Turkish (`src/lib/en.ts`, `src/lib/tr.ts`).
 
-## Expanding the ESLint configuration
+Download buttons read the latest release from the GitHub API. If GitHub can't be reached, they fall back to the links in `src/lib/release.ts`, so update the version there after a release.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Screenshots in `public/screens/` are copies of `docs/screenshots/` in the desktop repository.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Develop
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev      # local server with hot reload
+npm run build    # type check and build into dist/
+npm run lint
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Built with Vite, React and TypeScript. Deployed on Vercel; `vercel.json` sends every path to `index.html` so page links work.
