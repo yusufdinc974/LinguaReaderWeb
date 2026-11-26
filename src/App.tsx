@@ -1,28 +1,30 @@
-import { Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Layout from './components/Layout';
-import { appRoutes } from './app-routes';
-import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import Home from './pages/Home';
+import CustomLists from './pages/CustomLists';
+import Contribution from './pages/Contribution';
+import MobileApp from './pages/MobileApp';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import DeleteAccount from './pages/DeleteAccount';
+import NotFound from './pages/NotFound';
+import { I18nProvider } from './lib/i18n';
 
-function ScrollToTop() {
-  const { pathname } = useLocation();
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-  return null;
+export default function App() {
+    return (
+        <I18nProvider>
+            <BrowserRouter>
+                <Routes>
+                    <Route element={<Layout />}>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/custom-lists" element={<CustomLists />} />
+                        <Route path="/contribution" element={<Contribution />} />
+                        <Route path="/mobile" element={<MobileApp />} />
+                        <Route path="/privacy" element={<PrivacyPolicy />} />
+                        <Route path="/delete-account" element={<DeleteAccount />} />
+                        <Route path="*" element={<NotFound />} />
+                    </Route>
+                </Routes>
+            </BrowserRouter>
+        </I18nProvider>
+    );
 }
-
-function App() {
-  return (
-    <Layout>
-      <ScrollToTop />
-      <Routes>
-        {appRoutes.map((route) => (
-          <Route key={route.path} path={route.path} element={<route.component />} />
-        ))}
-      </Routes>
-    </Layout>
-  );
-}
-
-export default App;
